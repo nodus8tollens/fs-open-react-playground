@@ -8,7 +8,7 @@ const App = () => {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
   const [showAll, setShowAll] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("...some error happened...");
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     noteService.getAll().then((initialNotes) => {
@@ -42,6 +42,7 @@ const App = () => {
         setErrorMessage(
           `Note '${note.content}' was already removed from server`
         );
+        console.log("Error: ", error);
         setTimeout(() => {
           setErrorMessage(null);
         }, 5000);
