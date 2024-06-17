@@ -22,7 +22,9 @@ module.exports = {
   extends: "eslint:recommended",
   rules: {
     "@stylistic/js/indent": ["error", 2],
+
     "@stylistic/js/quotes": ["error", "double"],
+    "@stylistic/js/semi": ["error", "always"],
     eqeqeq: "error",
     "no-trailing-spaces": "error",
     "object-curly-spacing": ["error", "always"],
