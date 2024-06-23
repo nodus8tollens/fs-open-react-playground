@@ -1,10 +1,13 @@
-/* eslint-disable react/prop-types */
 const Notification = ({ message }) => {
   if (message === null) {
-    return null;
-  } else {
-    return <div className="error">{message}</div>;
+    return null
   }
-};
 
-export default Notification;
+  return (
+    <div className="error">
+      {message}
+    </div>
+  )
+}
+
+export default Notification

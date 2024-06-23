@@ -1,24 +1,24 @@
 import axios from "axios";
 const baseUrl = "/api/notes";
 
+let token = null;
+
+const setToken = (newToken) => {
+  token = `Bearer ${newToken}`;
+};
+
 const getAll = () => {
   const request = axios.get(baseUrl);
   return request.then((response) => response.data);
 };
 
-/* const getAll = () => {
-  const request = axios.get(baseUrl);
-  const nonExisting = {
-    id: 10000,
-    content: "This note is not saved to server",
-    important: true,
+const create = async (newObject) => {
+  const config = {
+    headers: { Authorization: token },
   };
-  return request.then((response) => response.data.concat(nonExisting));
-}; */
 
-const create = (newObject) => {
-  const request = axios.post(baseUrl, newObject);
-  return request.then((response) => response.data);
+  const response = await axios.post(baseUrl, newObject, config);
+  return response.data;
 };
 
 const update = (id, newObject) => {
@@ -26,8 +26,4 @@ const update = (id, newObject) => {
   return request.then((response) => response.data);
 };
 
-export default {
-  getAll,
-  create,
-  update,
-};
+export default { getAll, create, update, setToken };
